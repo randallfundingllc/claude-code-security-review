@@ -168,7 +168,8 @@ runs:
         echo "::group::Install Deps"
         if [ "${{ steps.claudecode-check.outputs.enable_claudecode }}" == "true" ]; then
           pip install -r "$ACTION_PATH/claudecode/requirements.txt"
-          npm install -g @anthropic-ai/claude-code
+          # Pinned so CLI upgrades arrive only through a reviewed commit here.
+          npm install -g @anthropic-ai/claude-code@2.1.312
         fi
         sudo apt-get update && sudo apt-get install -y jq
         echo "::endgroup::"
